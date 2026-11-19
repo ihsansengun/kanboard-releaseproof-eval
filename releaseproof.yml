@@ -1,0 +1,45 @@
+# ReleaseProof manifest for this evaluation fork of Kanboard.
+#
+# Configuration only. Nothing under app/ is changed for the evaluation, and
+# none of these files is read by Kanboard itself.
+# Format: https://github.com/ihsansengun/ReleaseProof/blob/main/docs/ONBOARDING.md
+
+# Replaced by the sandbox's own address when a run starts.
+baseUrl: http://localhost:8080
+
+# Kanboard reports a release name, not a commit, so there is no `version`
+# entry: the build job establishes which commit is running.
+
+# The account every new Kanboard installation has. A test credential of a
+# container that lives for one scenario; never a real one.
+accounts:
+  admin:
+    description: the administrator that every new installation has; may create users, groups and projects
+    username: admin
+    password: admin
+
+start:
+  dockerfile: .releaseproof/Dockerfile
+  port: 8080
+  env:
+    # Settings Kanboard already reads from its environment.
+    DATA_DIR: /data
+    LOG_DRIVER: stderr
+  # The SQLite database and uploaded files. In memory, gone with the container.
+  writable:
+    - /data
+  # A new installation for every scenario: nothing carries over, and
+  # identifiers come out the same on a repeat.
+  instances: per-scenario
+
+# No document in this repository counts as a requirement; the ticket does.
+docs: []
+
+signIn:
+  allow:
+    - POST /
+
+discovery:
+  deny:
+    - logout
+  maxPages: 12
