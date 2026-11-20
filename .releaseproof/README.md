@@ -13,3 +13,5 @@ upstream at commit `51d6e6f72d3f967ecbcbfff8ed38012613bb96ea`.
 Nothing here is read by Kanboard. No workflow and no credential is added to
 this repository: runs are started from ReleaseProof's own repository, which
 holds the credentials and fetches a pull request of this fork as data.
+
+A pull request on the branch `releaseproof/verify-only` exists only to give free verification runs a commit to build. It is never merged.
