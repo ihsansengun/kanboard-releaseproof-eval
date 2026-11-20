@@ -1,0 +1,14 @@
+# Who may state or amend requirements for ReleaseProof runs of this fork.
+#
+# Read ONLY from the default branch. A pull request that edits this file
+# changes nothing about its own run.
+requirementOwners:
+  # GitHub users, by immutable numeric id.
+  github:
+    - id: 16247839
+      login: ihsansengun
+  # Jira users, by account id. Their comments on a ticket are authoritative;
+  # everyone else's are shown as unverified context.
+  jira:
+    - accountId: "712020:7364b2f7-52b7-4279-b7ff-d81a5ea796ed"
+      name: product owner of the KAN project
