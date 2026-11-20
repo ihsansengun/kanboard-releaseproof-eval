@@ -1,0 +1,199 @@
+{
+  "key": "KBE-2",
+  "fields": {
+    "summary": "Find users by their complete e-mail address in the user search",
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Background"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "The user search only looks at usernames and names. Administrators often know a person only by e-mail address and cannot find the account. The search should also find a user by e-mail address, but only by the complete address: it must not be possible to discover other people's addresses by trying parts of them."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "The same search is behind the user list (Users management, search box) and the \"Name\" field used to add a member on a project's Permissions page."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Test data"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "The examples below assume two users created by the administrator in addition to admin: username jdoe, name John Doe, e-mail John.Doe@example.com; and username msmith, name Mary Smith, e-mail mary@example.com."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria"
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "In the user list, searching for a user's complete e-mail address finds that user, although the address is not part of the username or the name: \"John.Doe@example.com\" lists John Doe only, \"mary@example.com\" lists Mary Smith only, and the page title reads \"Users (1)\"."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Upper and lower case make no difference for the address: \"john.doe@example.com\" finds John Doe and \"MARY@example.com\" finds Mary Smith."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Only a complete address matches. Searching for \"@example.com\", \"mary@\", \"example.com\" or \"%@example.com\" finds no user: the list shows \"No users found.\" and the page title reads \"Users (0)\"."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Searching by username and name works as before, on any part of either and regardless of case: \"jd\" finds John Doe, \"SMITH\" and \"mary\" find Mary Smith, \"nobody\" finds no user."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "An empty search lists all users: admin, John Doe and Mary Smith, with the title \"Users (3)\"."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "On a project's Permissions page, typing the complete address \"mary@example.com\" in the \"Name\" field suggests \"Mary Smith (msmith)\"; typing \"mary@\" or \"@example.com\" suggests nobody; \"smi\" still suggests \"Mary Smith (msmith)\". A suggestion shows the name and the username, never the e-mail address."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The user list and its search remain for administrators only: a signed-in user who is not an administrator gets \"Access Forbidden\" (403) on both."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Out of scope"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "No change to how e-mail addresses are entered, validated or displayed."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
